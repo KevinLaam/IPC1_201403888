@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Seleccion extends javax.swing.JFrame {
 
     /**
-     * Creates new form Seleccion
+     * Creates new form 
      */
     public Seleccion() {
         initComponents();
