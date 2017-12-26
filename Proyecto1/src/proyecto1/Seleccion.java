@@ -8,6 +8,7 @@ package proyecto1;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -285,10 +286,13 @@ public class Seleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        Tablero tablero = new Tablero();
+        int numero = Integer.parseInt(JOptionPane.showInputDialog (this, "Ingrese el tamaño de tablero deseado: ",
+                "showInputDialog",JOptionPane.INFORMATION_MESSAGE));
+        
+        Tablero tablero = new Tablero(numero);
         tablero.setVisible(true);
         this.setVisible(false);
-        
+        //tablero.dimesiones=numero;
         tablero.setTxtrecibenombre1(nJugador1.getText());
         tablero.setTxts1(txtper1.getText());
         tablero.setTxts2(txtper2.getText());
@@ -298,6 +302,7 @@ public class Seleccion extends javax.swing.JFrame {
         tablero.setTxts12(txtPer1J2.getText());
         tablero.setTxts22(txtPer2J2.getText());
         tablero.setTxts32(txtPer3J2.getText());
+
         
         
         

@@ -195,7 +195,6 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="27" max="32767" attributes="0"/>
@@ -349,16 +348,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Arriba"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnArribaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnIzquierda">
       <Properties>
         <Property name="text" type="java.lang.String" value="Izquierda"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIzquierdaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDerecha">
       <Properties>
         <Property name="text" type="java.lang.String" value="Derecha"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDerechaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAbajo">
       <Properties>

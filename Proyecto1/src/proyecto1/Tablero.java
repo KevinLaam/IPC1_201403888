@@ -10,6 +10,7 @@ import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import proyecto1.Seleccion;
 
@@ -21,9 +22,70 @@ public class Tablero extends javax.swing.JFrame {
 
     /**
      * Creates new form Tablero
+     * @param dimesiones
      */
+    int dimesiones=0;
+    CreaTablero tab;
+    int dado = 0;
     public Tablero() {
+        
+//        initComponents();
+//        
+//        ImageIcon imagen = new ImageIcon("/proyecto1/Imagenes/1.jpg");
+//        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblDado.getWidth(), lblDado.getHeight(), Image.SCALE_DEFAULT));
+//        lblDado.setIcon(icono);
+//        this.repaint();
+//        
+//        ImageIcon imagen2 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono2 = new ImageIcon(imagen2.getImage().getScaledInstance(lblV1J1.getWidth(), lblV1J1.getHeight(), Image.SCALE_DEFAULT));
+//        lblV1J1.setIcon(icono2);
+//        this.repaint();
+//        
+//        ImageIcon imagen3 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono3 = new ImageIcon(imagen3.getImage().getScaledInstance(lblV2J1.getWidth(), lblV2J1.getHeight(), Image.SCALE_DEFAULT));
+//        lblV2J1.setIcon(icono3);
+//        this.repaint();
+//        ImageIcon imagen4 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono4 = new ImageIcon(imagen4.getImage().getScaledInstance(lblV3J1.getWidth(), lblV3J1.getHeight(), Image.SCALE_DEFAULT));
+//        lblV3J1.setIcon(icono4);
+//        this.repaint();
+//        ImageIcon imagen5 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono5 = new ImageIcon(imagen5.getImage().getScaledInstance(lblV4J1.getWidth(), lblV4J1.getHeight(), Image.SCALE_DEFAULT));
+//        lblV4J1.setIcon(icono5);
+//        this.repaint();
+//        ImageIcon imagen6 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono6 = new ImageIcon(imagen6.getImage().getScaledInstance(lblV5J1.getWidth(), lblV5J1.getHeight(), Image.SCALE_DEFAULT));
+//        lblV5J1.setIcon(icono6);
+//        this.repaint();
+//        
+//        ImageIcon imagen7 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono7 = new ImageIcon(imagen7.getImage().getScaledInstance(lblV1J22.getWidth(), lblV1J22.getHeight(), Image.SCALE_DEFAULT));
+//        lblV1J22.setIcon(icono7);
+//        this.repaint();
+//        
+//        ImageIcon imagen8 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono8 = new ImageIcon(imagen8.getImage().getScaledInstance(lblV2J22.getWidth(), lblV2J22.getHeight(), Image.SCALE_DEFAULT));
+//        lblV2J22.setIcon(icono8);
+//        this.repaint();
+//        
+//        ImageIcon imagen9 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono9 = new ImageIcon(imagen9.getImage().getScaledInstance(lblV3J22.getWidth(), lblV3J22.getHeight(), Image.SCALE_DEFAULT));
+//        lblV3J22.setIcon(icono9);
+//        this.repaint();
+//        
+//        ImageIcon imagen10 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono10 = new ImageIcon(imagen10.getImage().getScaledInstance(lblV4J22.getWidth(), lblV4J22.getHeight(), Image.SCALE_DEFAULT));
+//        lblV4J22.setIcon(icono10);
+//        this.repaint();
+//        
+//        ImageIcon imagen11= new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
+//        Icon icono11 = new ImageIcon(imagen11.getImage().getScaledInstance(lblV5J22.getWidth(), lblV5J22.getHeight(), Image.SCALE_DEFAULT));
+//        lblV5J22.setIcon(icono11);
+//        this.repaint();
+    }
+    public Tablero(int dimensiones){
         initComponents();
+        
         ImageIcon imagen = new ImageIcon("/proyecto1/Imagenes/1.jpg");
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblDado.getWidth(), lblDado.getHeight(), Image.SCALE_DEFAULT));
         lblDado.setIcon(icono);
@@ -75,8 +137,12 @@ public class Tablero extends javax.swing.JFrame {
         Icon icono11 = new ImageIcon(imagen11.getImage().getScaledInstance(lblV5J22.getWidth(), lblV5J22.getHeight(), Image.SCALE_DEFAULT));
         lblV5J22.setIcon(icono11);
         this.repaint();
+        
+        fondo.removeAll();
+        fondo.repaint();
+        tab = new CreaTablero(dimensiones,fondo);
+        //JOptionPane.showMessageDialog(null,dimensiones);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,10 +246,25 @@ public class Tablero extends javax.swing.JFrame {
         });
 
         btnArriba.setText("Arriba");
+        btnArriba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArribaActionPerformed(evt);
+            }
+        });
 
         btnIzquierda.setText("Izquierda");
+        btnIzquierda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzquierdaActionPerformed(evt);
+            }
+        });
 
         btnDerecha.setText("Derecha");
+        btnDerecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDerechaActionPerformed(evt);
+            }
+        });
 
         btnAbajo.setText("Abajo");
         btnAbajo.addActionListener(new java.awt.event.ActionListener() {
@@ -327,8 +408,7 @@ public class Tablero extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel4))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -445,8 +525,9 @@ public class Tablero extends javax.swing.JFrame {
 //        lblDado.setIcon(icono);
 //        this.repaint();        
         Random rnd = new Random();
+        dado = rnd.nextInt(6) + 1;
         this.repaint();
-        lblDado.setIcon(frdados(rnd.nextInt(6) + 1));
+        lblDado.setIcon(frdados(dado));
 
         //lblDado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto1/Imagenes/2.jpg")));
     }//GEN-LAST:event_btnTirarActionPerformed
@@ -461,7 +542,45 @@ public class Tablero extends javax.swing.JFrame {
 
     private void btnAbajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbajoActionPerformed
         // TODO add your handling code here:
+         if (!tableroCreado) {
+            System.out.println("Tablero no creado");
+            return;
+        }
+        Movimiento mov = new Movimiento(2,dado,tab);
+        mov.start();
     }//GEN-LAST:event_btnAbajoActionPerformed
+     public boolean tableroCreado = false;
+    private void btnDerechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDerechaActionPerformed
+        // TODO add your handling code here:
+        if (!tableroCreado) {
+            System.out.println("Tablero no creado");
+            return;
+        }
+
+        Movimiento mov = new Movimiento(6,dado,tab);
+        mov.start();
+    }//GEN-LAST:event_btnDerechaActionPerformed
+
+    private void btnArribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArribaActionPerformed
+        // TODO add your handling code here:
+        if (!tableroCreado) {
+            System.out.println("Tablero no creado");
+            return;
+        }
+
+        Movimiento mov = new Movimiento(8,dado,tab);
+        mov.start();
+    }//GEN-LAST:event_btnArribaActionPerformed
+
+    private void btnIzquierdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzquierdaActionPerformed
+        // TODO add your handling code here:
+        if (!tableroCreado) {
+            System.out.println("Tablero no creado");
+            return;
+        }
+        Movimiento mov = new Movimiento(4,dado,tab);
+        mov.start();
+    }//GEN-LAST:event_btnIzquierdaActionPerformed
     Icon ricono;
     ImageIcon imagen;
 
