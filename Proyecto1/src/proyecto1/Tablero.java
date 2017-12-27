@@ -27,61 +27,8 @@ public class Tablero extends javax.swing.JFrame {
     int dimesiones=0;
     CreaTablero tab;
     int dado = 0;
+    public static Boolean tjugador=false;
     public Tablero() {
-        
-//        initComponents();
-//        
-//        ImageIcon imagen = new ImageIcon("/proyecto1/Imagenes/1.jpg");
-//        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblDado.getWidth(), lblDado.getHeight(), Image.SCALE_DEFAULT));
-//        lblDado.setIcon(icono);
-//        this.repaint();
-//        
-//        ImageIcon imagen2 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono2 = new ImageIcon(imagen2.getImage().getScaledInstance(lblV1J1.getWidth(), lblV1J1.getHeight(), Image.SCALE_DEFAULT));
-//        lblV1J1.setIcon(icono2);
-//        this.repaint();
-//        
-//        ImageIcon imagen3 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono3 = new ImageIcon(imagen3.getImage().getScaledInstance(lblV2J1.getWidth(), lblV2J1.getHeight(), Image.SCALE_DEFAULT));
-//        lblV2J1.setIcon(icono3);
-//        this.repaint();
-//        ImageIcon imagen4 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono4 = new ImageIcon(imagen4.getImage().getScaledInstance(lblV3J1.getWidth(), lblV3J1.getHeight(), Image.SCALE_DEFAULT));
-//        lblV3J1.setIcon(icono4);
-//        this.repaint();
-//        ImageIcon imagen5 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono5 = new ImageIcon(imagen5.getImage().getScaledInstance(lblV4J1.getWidth(), lblV4J1.getHeight(), Image.SCALE_DEFAULT));
-//        lblV4J1.setIcon(icono5);
-//        this.repaint();
-//        ImageIcon imagen6 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono6 = new ImageIcon(imagen6.getImage().getScaledInstance(lblV5J1.getWidth(), lblV5J1.getHeight(), Image.SCALE_DEFAULT));
-//        lblV5J1.setIcon(icono6);
-//        this.repaint();
-//        
-//        ImageIcon imagen7 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono7 = new ImageIcon(imagen7.getImage().getScaledInstance(lblV1J22.getWidth(), lblV1J22.getHeight(), Image.SCALE_DEFAULT));
-//        lblV1J22.setIcon(icono7);
-//        this.repaint();
-//        
-//        ImageIcon imagen8 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono8 = new ImageIcon(imagen8.getImage().getScaledInstance(lblV2J22.getWidth(), lblV2J22.getHeight(), Image.SCALE_DEFAULT));
-//        lblV2J22.setIcon(icono8);
-//        this.repaint();
-//        
-//        ImageIcon imagen9 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono9 = new ImageIcon(imagen9.getImage().getScaledInstance(lblV3J22.getWidth(), lblV3J22.getHeight(), Image.SCALE_DEFAULT));
-//        lblV3J22.setIcon(icono9);
-//        this.repaint();
-//        
-//        ImageIcon imagen10 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono10 = new ImageIcon(imagen10.getImage().getScaledInstance(lblV4J22.getWidth(), lblV4J22.getHeight(), Image.SCALE_DEFAULT));
-//        lblV4J22.setIcon(icono10);
-//        this.repaint();
-//        
-//        ImageIcon imagen11= new ImageIcon(".\\src\\proyecto1\\Imagenes\\vida.png");
-//        Icon icono11 = new ImageIcon(imagen11.getImage().getScaledInstance(lblV5J22.getWidth(), lblV5J22.getHeight(), Image.SCALE_DEFAULT));
-//        lblV5J22.setIcon(icono11);
-//        this.repaint();
     }
     public Tablero(int dimensiones){
         initComponents();
@@ -141,7 +88,8 @@ public class Tablero extends javax.swing.JFrame {
         fondo.removeAll();
         fondo.repaint();
         tab = new CreaTablero(dimensiones,fondo);
-        //JOptionPane.showMessageDialog(null,dimensiones);
+        
+        lblJugador.setText("1");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,6 +131,9 @@ public class Tablero extends javax.swing.JFrame {
         btnIzquierda = new javax.swing.JButton();
         btnDerecha = new javax.swing.JButton();
         btnAbajo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblJugador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MEDIEVIL");
@@ -273,6 +224,12 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Turno de jugador:");
+
+        lblJugador.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblJugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJugador.setText("jLabel7");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -344,15 +301,20 @@ public class Tablero extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnArriba)
-                                    .addComponent(btnTirar)
-                                    .addComponent(btnAbajo))
-                                .addGap(140, 140, 140))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblDado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(119, 119, 119))))))
+                            .addComponent(btnArriba)
+                            .addComponent(btnTirar)
+                            .addComponent(btnAbajo))
+                        .addGap(140, 140, 140))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIzquierda)
@@ -361,7 +323,7 @@ public class Tablero extends javax.swing.JFrame {
                 .addGap(61, 61, 61))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(565, Short.MAX_VALUE)
+                    .addContainerGap(577, Short.MAX_VALUE)
                     .addComponent(lblV1J3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(271, 271, 271)))
         );
@@ -407,22 +369,31 @@ public class Tablero extends javax.swing.JFrame {
                                 .addComponent(lblV1J2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblV1J22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblV2J22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblV3J22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblV4J22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblV5J22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel4)
+                                .addGap(27, 27, 27)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblDado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTirar)
                                 .addGap(26, 26, 26)
-                                .addComponent(btnArriba))))
+                                .addComponent(btnArriba))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -528,6 +499,7 @@ public class Tablero extends javax.swing.JFrame {
         dado = rnd.nextInt(6) + 1;
         this.repaint();
         lblDado.setIcon(frdados(dado));
+        tjugador=false;
 
         //lblDado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto1/Imagenes/2.jpg")));
     }//GEN-LAST:event_btnTirarActionPerformed
@@ -546,7 +518,7 @@ public class Tablero extends javax.swing.JFrame {
             System.out.println("Tablero no creado");
             return;
         }
-        Movimiento mov = new Movimiento(2,dado,tab);
+        Movimiento mov = new Movimiento(tjugador,2,dado,tab);
         mov.start();
     }//GEN-LAST:event_btnAbajoActionPerformed
      public boolean tableroCreado = false;
@@ -557,7 +529,7 @@ public class Tablero extends javax.swing.JFrame {
             return;
         }
 
-        Movimiento mov = new Movimiento(6,dado,tab);
+        Movimiento mov = new Movimiento(tjugador,6,dado,tab);
         mov.start();
     }//GEN-LAST:event_btnDerechaActionPerformed
 
@@ -568,7 +540,7 @@ public class Tablero extends javax.swing.JFrame {
             return;
         }
 
-        Movimiento mov = new Movimiento(8,dado,tab);
+        Movimiento mov = new Movimiento(tjugador,8,dado,tab);
         mov.start();
     }//GEN-LAST:event_btnArribaActionPerformed
 
@@ -578,7 +550,7 @@ public class Tablero extends javax.swing.JFrame {
             System.out.println("Tablero no creado");
             return;
         }
-        Movimiento mov = new Movimiento(4,dado,tab);
+        Movimiento mov = new Movimiento(tjugador,4,dado,tab);
         mov.start();
     }//GEN-LAST:event_btnIzquierdaActionPerformed
     Icon ricono;
@@ -657,7 +629,10 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblDado;
+    private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblV1J1;
     private javax.swing.JLabel lblV1J2;
     private javax.swing.JLabel lblV1J22;

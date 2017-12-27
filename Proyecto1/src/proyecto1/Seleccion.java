@@ -39,7 +39,7 @@ public class Seleccion extends javax.swing.JFrame {
         btn2J1.setIcon(icono2);
         this.repaint(); 
         
-        ImageIcon imagen4 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\Wizard1-2 - Copy.png");
+        ImageIcon imagen4 = new ImageIcon(".\\src\\proyecto1\\Imagenes\\Wizard1-2-Copy.png");
         Icon icono4 = new ImageIcon(imagen4.getImage().getScaledInstance(btn1J2.getWidth(),btn1J2.getHeight(), Image.SCALE_DEFAULT));
         btn1J2.setIcon(icono4);
         this.repaint();
@@ -293,6 +293,7 @@ public class Seleccion extends javax.swing.JFrame {
         tablero.setVisible(true);
         this.setVisible(false);
         //tablero.dimesiones=numero;
+        tablero.tableroCreado=true;
         tablero.setTxtrecibenombre1(nJugador1.getText());
         tablero.setTxts1(txtper1.getText());
         tablero.setTxts2(txtper2.getText());

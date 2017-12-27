@@ -8,6 +8,8 @@ package proyecto1;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kevin Lam
@@ -16,15 +18,17 @@ public class Movimiento extends Thread {
      public int cantidad = 0;
     public int direccion=0;
     public CreaTablero tab = null;
+    public Boolean turno=false;
 
-    public Movimiento(int direccion,int cantidad, CreaTablero tab) {
+    public Movimiento(Boolean turno_jugador,int direccion,int cantidad, CreaTablero tab) {
         this.direccion=direccion;
         this.cantidad = cantidad;
         this.tab = tab;
+        this.turno=turno_jugador;
 
     }
 
-    public void mover(int direccion,int cantidad) {
+    public void mover(Boolean turno_j,int direccion,int cantidad) {
         switch (direccion) {
             case 6:
                 derecha(cantidad);
@@ -43,6 +47,7 @@ public class Movimiento extends Thread {
     public void derecha(int cantidad){
         try {
         if (cantidad <= 0) {
+            //tjugador=true;
             return;
         }
         if (comprobar()) {
@@ -65,7 +70,7 @@ public class Movimiento extends Thread {
         tab.repintar();
         cantidad--;
         Thread.sleep(500); 
-        mover(direccion,cantidad);
+        mover(turno,direccion,cantidad);
         } catch (InterruptedException ex) {
 
             Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,7 +119,7 @@ public class Movimiento extends Thread {
         
             Thread.sleep(500);
             
-        mover(direccion,cantidad);
+        mover(turno,direccion,cantidad);
         } catch (InterruptedException ex) {
             Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
         }        
@@ -148,7 +153,7 @@ public class Movimiento extends Thread {
         tab.repintar();
         cantidad--;
         Thread.sleep(500); 
-        mover(direccion,cantidad);
+        mover(turno,direccion,cantidad);
         } catch (InterruptedException ex) {
 
             Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
@@ -183,7 +188,7 @@ public class Movimiento extends Thread {
         tab.repintar();
         cantidad--;
         Thread.sleep(500); 
-        mover(direccion,cantidad);
+        mover(turno,direccion,cantidad);
         } catch (InterruptedException ex) {
 
             Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
@@ -225,7 +230,7 @@ public class Movimiento extends Thread {
         return false;
     }
     public void run(){
-        mover(direccion,cantidad);
+        mover(turno,direccion,cantidad);
 
     }
     
