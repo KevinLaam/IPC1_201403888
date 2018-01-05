@@ -9,12 +9,8 @@ package proyecto2;
  *
  * @author Kevin Lam
  */
-public class NodoCo {
+public class NodoCir {
     int dato;
-    NodoCo siguiente;
+    NodoCir siguiente, anterior;
     
-    public NodoCo(int d){
-        dato = d;
-        siguiente = null;
-    }
 }
