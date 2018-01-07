@@ -9,11 +9,11 @@ package proyecto2;
  *
  * @author Kevin Lam
  */
-public class Cola {
-    NodoCo inicio,fin;
+public class ColaEspera {
+    NodoColaEspera inicio,fin;
     int tama;
     
-    public Cola(){
+    public ColaEspera(){
         inicio = fin = null;
         tama = 0;
     }
@@ -24,7 +24,7 @@ public class Cola {
     }
     //insertar
     public void insertar(int d){
-        NodoCo nuevo = new NodoCo(d);
+        NodoColaEspera nuevo = new NodoColaEspera(d);
         if (estaVacia()) {
             inicio = nuevo;
         }else{
@@ -48,4 +48,5 @@ public class Cola {
     public int tamaCola(){
         return tama;
     }
+    
 }

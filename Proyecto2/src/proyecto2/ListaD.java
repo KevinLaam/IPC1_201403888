@@ -22,8 +22,10 @@ public class ListaD {
     
     public void agregarAlInicio(int d){
         if (!estaVacia()) {
-            inicio = new NodoD(d,inicio,null);
-            inicio.siguiente.anterior = inicio;
+            NodoD aux = inicio;
+            inicio = new NodoD(d);
+            inicio.siguiente = aux;
+            aux.anterior = inicio;
         }else{
             inicio = fin = new NodoD(d);
         }
@@ -31,8 +33,10 @@ public class ListaD {
     
     public void agregarAlFinal(int d){
         if (!estaVacia()) {
-            fin = new NodoD(d,null,fin);
-            fin.anterior.siguiente = fin;
+            NodoD aux = fin;
+            fin = new NodoD(d);
+            fin.anterior = aux;
+            aux.siguiente = fin;
         }else{
             inicio = fin = new NodoD(d);
         }
@@ -58,5 +62,14 @@ public class ListaD {
             fin.siguiente = null;
         }
         return d;
+    }
+     public NodoD obtenerNodoD(int dato){
+        NodoD aux = inicio;
+        while (aux.siguiente!=null){
+            if(aux.dato==dato)
+                return aux;
+            aux = aux.siguiente;
+        }
+        return null;
     }
 }

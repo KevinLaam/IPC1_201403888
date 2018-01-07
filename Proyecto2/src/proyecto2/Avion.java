@@ -15,6 +15,11 @@ public class Avion {
     private int pasajeros;
     private int turnosDesabordaje;
     private int turnosMantenimiento;
+    
+    public Avion(){
+        
+        
+    }
 
     public String getTipo() {
         return tipo;

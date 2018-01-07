@@ -12,10 +12,16 @@ import java.util.Random;
  * @author Kevin Lam
  */
 public class Pasajero {
-    private int cantidadMaletas;
-    private int cantidadDocumentos;
-    private int numeroTurnos;
-
+    int cantidadMaletas  ;
+    int cantidadDocumentos;
+    int numeroTurnos;
+    
+     public Pasajero (){
+         cantidadMaletas = (int) (Math.random()*(4-1+1)+1); ;
+         cantidadDocumentos = (int) (Math.random()*(10-1+1)+1);
+         numeroTurnos = (int) (Math.random()*(3-1+1)+1) ;
+     }
+    
     public int getCantidadMaletas() {
         return cantidadMaletas;
     }
