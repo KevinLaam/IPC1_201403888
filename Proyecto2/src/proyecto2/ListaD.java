@@ -10,10 +10,12 @@ package proyecto2;
  * @author Kevin Lam
  */
 public class ListaD {
+    Avion avion ;
     NodoD inicio, fin;
     
     public ListaD(){
         inicio = fin = null;
+       
     }
     
     public boolean estaVacia(){
@@ -27,6 +29,7 @@ public class ListaD {
             inicio.siguiente = aux;
             aux.anterior = inicio;
         }else{
+            
             inicio = fin = new NodoD(d);
         }
     }
@@ -42,8 +45,59 @@ public class ListaD {
         }
     }
     
-    public int eliminarAlInicio(){
-        int dato = inicio.dato;
+   
+     public NodoD obtenerNodoD(int dato){
+        NodoD aux = inicio;
+        while (aux.siguiente!=null){
+            if(aux.dato==dato)
+                
+                return aux;
+            aux = aux.siguiente;
+        }
+        return null;
+    }
+     
+     public NodoD eliminarCualquierLado(int id){
+         NodoD aux = inicio;
+         if (inicio == fin) {
+             inicio = fin = null;
+             return aux;
+         }else{ 
+            while(true){
+                if(aux.dato == id){
+                    if(aux == inicio){
+                        if(aux.siguiente == fin){
+                    aux.siguiente.anterior = null;
+                    inicio = fin = aux.siguiente;
+                    return aux;
+                        }else{
+                        return eliminarAlInicio();
+                        }
+                    }else if(aux == fin){
+                        if(aux.anterior == inicio){
+                    aux.anterior.siguiente = null;
+                    inicio = fin = aux.anterior;
+                        }else{
+                        
+                        return eliminarDelFinal();
+                        }
+                    return aux;
+                    }else{
+                    NodoD ayudante = aux;
+                    aux.anterior.siguiente = ayudante.siguiente;
+                    aux.siguiente.anterior = ayudante.anterior;
+                    return aux;
+                    }
+                }  
+                if(aux.siguiente == null) break;
+                aux = aux.siguiente;
+            }
+         }
+         return null;
+     }
+     
+      public NodoD eliminarAlInicio(){
+        NodoD dato = inicio;
         if (inicio == fin) {
             inicio = fin = null;
         }else{
@@ -53,8 +107,8 @@ public class ListaD {
         return dato;
     }
     
-    public int eliminarDelFinal(){
-        int d = fin.dato;
+    public NodoD eliminarDelFinal(){
+        NodoD d = fin;
         if (inicio == fin) {
             inicio = fin = null;
         }else{
@@ -62,14 +116,5 @@ public class ListaD {
             fin.siguiente = null;
         }
         return d;
-    }
-     public NodoD obtenerNodoD(int dato){
-        NodoD aux = inicio;
-        while (aux.siguiente!=null){
-            if(aux.dato==dato)
-                return aux;
-            aux = aux.siguiente;
-        }
-        return null;
     }
 }

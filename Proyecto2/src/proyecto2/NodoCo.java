@@ -10,11 +10,13 @@ package proyecto2;
  * @author Kevin Lam
  */
 public class NodoCo {
-    int dato;
+    
     NodoCo siguiente;
     
-    public NodoCo(int d){
-        dato = d;
+    Pasajero pasajero;
+    
+    public NodoCo(Pasajero d){
+        pasajero = d;
         siguiente = null;
     }
 }

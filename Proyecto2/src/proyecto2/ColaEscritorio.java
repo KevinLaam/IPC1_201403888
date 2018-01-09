@@ -11,10 +11,16 @@ package proyecto2;
  */
 public class ColaEscritorio {
     NodoCo inicio,fin;
+    Avion avion;
+    // Estado = false es libre y Estado = true es ocupado.
+    boolean estado;
+    int turnos;
     int tama;
     
     public ColaEscritorio(){
         inicio = fin = null;
+        estado = false;
+        turnos = 0;
         tama = 0;
     }
     
@@ -23,7 +29,7 @@ public class ColaEscritorio {
         return inicio == null;
     }
     //insertar
-    public void insertar(int d){
+    public void insertar(Pasajero d){
         NodoCo nuevo = new NodoCo(d);
         if (estaVacia()) {
             inicio = nuevo;
@@ -34,16 +40,16 @@ public class ColaEscritorio {
         tama++;
     }
     //quitar elemento
-    public int quitar(){
-        int auxiliar = inicio.dato;
-        inicio = inicio.siguiente;
-        tama--;
-        return auxiliar;
-    }
-    
-    public int inicioCola(){
-        return inicio.dato;
-    }
+//    public int quitar(){
+//        int auxiliar = inicio;
+//        inicio = inicio.siguiente;
+//        tama--;
+//        return auxiliar;
+//    }
+//    
+//    public int inicioCola(){
+//        return inicio.dato;
+//    }
     
     public int tamaCola(){
         return tama;

@@ -10,12 +10,15 @@ package proyecto2;
  * @author Kevin Lam
  */
 public class NodoColaEspera {
-     int dato;
+     
+    int dato;
+    Pasajero pasajeros; 
     NodoColaEspera siguiente;
     
-    public NodoColaEspera(int d){
-        dato = d;
+    public NodoColaEspera(Pasajero d){
+        
         siguiente = null;
+        this.pasajeros = d;
     }
     
 }

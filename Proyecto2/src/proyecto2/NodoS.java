@@ -12,9 +12,11 @@ package proyecto2;
 public class NodoS {
     public int dato;
     public NodoS siguiente;
+    public ColaEscritorio colaLS;
         
         public NodoS(int d){
             this.dato = d;
+            this.colaLS = new ColaEscritorio();
         }
         public NodoS(int d, NodoS s){
             this.dato = d;

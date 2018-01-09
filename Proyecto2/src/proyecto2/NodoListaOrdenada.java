@@ -9,23 +9,25 @@ package proyecto2;
  *
  * @author Kevin Lam
  */
-public class NodoD {
+public class NodoListaOrdenada {
     public int dato;
-    public NodoD anterior, siguiente;
+    Pasajero pasajero = new Pasajero();
+    public char id;
+    public NodoListaOrdenada anterior, siguiente;
     public ColaEscritorio colaLD;
     public Pila pilaLD;
-    Avion avion;
     
-    public NodoD(int d){
+    public NodoListaOrdenada(int d){
         this.dato = d;
         this.anterior = null;
         this.siguiente = null;
         this.colaLD = new ColaEscritorio();
         this.pilaLD = new Pila();
-        this.avion = new Avion();
+        this.id = (char) (97+d);
+        
     }
     
-    public NodoD(int d, NodoD a, NodoD s){
+    public NodoListaOrdenada(int d, NodoListaOrdenada a, NodoListaOrdenada s){
         dato = d;
         anterior = a;
         siguiente = s;

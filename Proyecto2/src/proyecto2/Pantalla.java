@@ -12,7 +12,12 @@ import java.util.Random;
  * @author Kevin Lam
  */
 public class Pantalla extends javax.swing.JFrame {
-
+    ListaD listaAviones = new ListaD();
+    ListaDobleOrdenada listaEscritorios = new ListaDobleOrdenada();
+    ListaS listaMantenimiento = new ListaS();
+    ColaEspera colaEspera = new ColaEspera();     
+    ListaCir listaMaletas = new ListaCir();
+    public boolean estado = true;
     /**
      * Creates new form Pantalla
      */
@@ -126,12 +131,141 @@ public class Pantalla extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
         
+        if (estado) {
+        int aviones = Integer.parseInt(lblnoAviones.getText());
+        System.out.println(aviones);
+        for (int i = 0; i <= aviones -1; i++) {
+            listaAviones.agregarAlFinal(i + 1);
+        }
+        
+        int escritorios = Integer.parseInt(lblcantEscritorios.getText());
+     
+        for (int i = 0; i <= escritorios -1; i++) {
+            listaEscritorios.agregarAlFinal(i);
+        }
+        
+                int mantenimiento = Integer.parseInt(lblServicio.getText());
+        
+        for (int i = 0; i <= mantenimiento -1; i++) {
+            listaMantenimiento.agregarAlFinal(i + 1);
+        }
+        NodoD auxiliar = listaAviones.inicio;
+        while(true){
+            System.out.println("# " + auxiliar.dato);
+            System.out.println("# " + auxiliar.avion.pasajeros);
+            System.out.println("# " + auxiliar.avion.turnosDesabordaje);
+            System.out.println("===================================");
+            auxiliar = auxiliar.siguiente;
+            if (auxiliar == null) break;
+        estado = false;
+        }    
+        }else  {
+            NodoD auxiliar = listaAviones.inicio;
+            int elim = 1;
+        while(true){
+            auxiliar.avion.turnosDesabordaje =auxiliar.avion.turnosDesabordaje-1; 
+            if (auxiliar.avion.turnosDesabordaje == 0) {
+                // Sacar avion de la lista y pasarlo a la lista de mantenimiento
+                NodoD eliminado = listaAviones.eliminarCualquierLado(elim);
+                boolean eliminar = insertarMantenimiento(eliminado);
+                if(eliminar){
+                    System.out.println("Se ingreso a mantenimiento el avion " + eliminado.dato + ".");
+                }else{
+                    System.out.println("No se pudo ingresar a mantenimiento.");
+                }
+                int numeroPasajeros=auxiliar.avion.pasajeros;
+                for (int i = 0; i < numeroPasajeros; i++) {
+                    Pasajero nuevo = new Pasajero();
+                    colaEspera.insertar(nuevo);
+                    for (int j = 0; j < nuevo.cantidadMaletas; j++) {
+                        listaMaletas.ingresar(j);
+                    }
+                }
+                
+                
+            }
+            elim ++;
+            auxiliar = auxiliar.siguiente;
+            if (auxiliar == null) break;
+                  
+        }
+         NodoColaEspera  aux_espera = colaEspera.inicio;
+            if (aux_espera != null) {
+                boolean espacio = true;
+                while (espacio){
+                    NodoListaOrdenada escritorio = listaEscritorios.inicio;
+                    while(true){
+                    NodoColaEspera sacar = colaEspera.quitar();
+                    if(sacar == null){
+                    espacio = false;
+                    break;
+                    }
+                    if(escritorio.colaLD.tama<10){
+                        escritorio.colaLD.insertar(sacar.pasajeros);
+                        System.out.println("Se ingreso un pasajero a la cola de escritorios");
+                        continue;
+                    }
+                    escritorio = escritorio.siguiente;
+                    if(escritorio == null) {
+                    espacio = false;
+                    break;
+                    } 
+                    }
+                    }
+                
+                /* Recorrer los escritorios sacar de la cola y meter a la pila para que los atiendan si la pila esta disponible
+                    Manejar los turnos de las personas que estan en la pila 
+                    Cuando turnos son = 0 tomar el nodo pasajero, hacer un for de 0 a la cantidad de maletas 
+                    Sacar esa cantidad de maletas de la lista circular 
+                */
+                    
+            
+        }
+            }
+        
+        NodoColaEspera espera =  colaEspera.inicio;
+        
+        if(espera == null) return;
+        int cont = 1;
+        while(true){
+            System.out.println("#" + cont);
+            System.out.println("Documentos " + espera.pasajeros.cantidadDocumentos);
+            System.out.println("maletas" +espera.pasajeros.cantidadMaletas);
+            System.out.println("turnos" + espera.pasajeros.numeroTurnos);
+            System.out.println("===================================");
+            espera = espera.siguiente;
+            cont++;
+            if (espera == null) break;
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+    public boolean insertarMantenimiento(NodoD avion){
+    
+        NodoS auxiliar = listaMantenimiento.inicio;
+        while(true){
+            if(auxiliar.colaLS.estado == false){
+            auxiliar.colaLS.avion = avion.avion;
+            auxiliar.colaLS.estado = true;
+            return true;
+            }
+        auxiliar = auxiliar.siguiente;
+        if(auxiliar == null) break;
+        }
+        
+        return false;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -154,6 +288,9 @@ public class Pantalla extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -170,6 +307,7 @@ public class Pantalla extends javax.swing.JFrame {
         switch (valor){
             case 1:    
                 avion.setTipo("pequeño");
+               
             break;
             case 2:
                 avion.setTipo("mediano");

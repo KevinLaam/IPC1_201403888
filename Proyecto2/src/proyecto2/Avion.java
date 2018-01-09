@@ -5,21 +5,52 @@
  */
 package proyecto2;
 
+import java.util.Random;
+
 /**
  *
  * @author Kevin Lam
  */
 public class Avion {
-    private String tipo;
-    private int probabilidad;
-    private int pasajeros;
-    private int turnosDesabordaje;
-    private int turnosMantenimiento;
+     String tipo;
+    
+     int pasajeros;
+     int turnosDesabordaje;
+     int turnosMantenimiento;
     
     public Avion(){
         
-        
+        Random rnd = new Random();
+        int valor = rnd.nextInt(3) + 1;
+        switch (valor){
+            case 1:    
+                tipo = "pequeño";
+                pasajeros = (int) (Math.random()*(10-5+1)+5);
+                turnosDesabordaje = 1;
+                turnosMantenimiento = (int) (Math.random()*(3-1+1)+1);
+            break;
+            case 2:
+                tipo = "mediano";
+                pasajeros = (int) (Math.random()*(25-15+1)+15);
+               turnosDesabordaje = 2;
+                turnosMantenimiento = (int) (Math.random()*(4-2+1)+2);
+            break;
+            case 3:
+                tipo = "grande";
+                pasajeros = (int) (Math.random()*(40-30+1)+30);
+                turnosDesabordaje = 3;
+                turnosMantenimiento = (int) (Math.random()*(6-3+1)+3);
+            break;
+            default: 
+                tipo = "salio de rango";
+                pasajeros = 0;
+                turnosDesabordaje = 10;
+                turnosMantenimiento = 100;
+            break;
+        }
+           
     }
+   
 
     public String getTipo() {
         return tipo;
@@ -27,14 +58,6 @@ public class Avion {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public int getProbabilidad() {
-        return probabilidad;
-    }
-
-    public void setProbabilidad(int probabilidad) {
-        this.probabilidad = probabilidad;
     }
 
     public int getPasajeros() {

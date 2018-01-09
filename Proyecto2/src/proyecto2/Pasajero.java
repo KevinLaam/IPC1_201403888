@@ -17,7 +17,7 @@ public class Pasajero {
     int numeroTurnos;
     
      public Pasajero (){
-         cantidadMaletas = (int) (Math.random()*(4-1+1)+1); ;
+         cantidadMaletas = (int) (Math.random()*(4-1+1)+1); 
          cantidadDocumentos = (int) (Math.random()*(10-1+1)+1);
          numeroTurnos = (int) (Math.random()*(3-1+1)+1) ;
      }

@@ -10,8 +10,10 @@ package proyecto2;
  * @author Kevin Lam
  */
 public class ColaEspera {
+    
     NodoColaEspera inicio,fin;
     int tama;
+    
     
     public ColaEspera(){
         inicio = fin = null;
@@ -23,7 +25,7 @@ public class ColaEspera {
         return inicio == null;
     }
     //insertar
-    public void insertar(int d){
+    public void insertar(Pasajero d){
         NodoColaEspera nuevo = new NodoColaEspera(d);
         if (estaVacia()) {
             inicio = nuevo;
@@ -34,8 +36,9 @@ public class ColaEspera {
         tama++;
     }
     //quitar elemento
-    public int quitar(){
-        int auxiliar = inicio.dato;
+    public NodoColaEspera quitar(){
+        
+        NodoColaEspera auxiliar = inicio;
         inicio = inicio.siguiente;
         tama--;
         return auxiliar;

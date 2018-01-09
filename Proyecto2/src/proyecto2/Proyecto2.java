@@ -13,6 +13,8 @@ public class Proyecto2 {
         // TODO code application logic here
         Pantalla pant = new Pantalla();
         pant.setVisible(true);
+        
+        
     }
     
 }
