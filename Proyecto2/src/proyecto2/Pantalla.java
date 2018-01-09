@@ -12,12 +12,18 @@ import java.util.Random;
  * @author Kevin Lam
  */
 public class Pantalla extends javax.swing.JFrame {
+
     ListaD listaAviones = new ListaD();
     ListaDobleOrdenada listaEscritorios = new ListaDobleOrdenada();
     ListaS listaMantenimiento = new ListaS();
-    ColaEspera colaEspera = new ColaEspera();     
+    ColaEspera colaEspera = new ColaEspera();
     ListaCir listaMaletas = new ListaCir();
     public boolean estado = true;
+    //llena jTextArea1
+    String consola="";
+    //para graficar ListaMantenimiento
+    
+
     /**
      * Creates new form Pantalla
      */
@@ -44,12 +50,14 @@ public class Pantalla extends javax.swing.JFrame {
         lblServicio = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
         btnTerminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
 
         jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -67,6 +75,18 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         btnTerminar.setText("Terminar");
+        btnTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Graficas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,30 +94,28 @@ public class Pantalla extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblnoAviones))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblcantEscritorios)
-                                    .addComponent(lblServicio))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblnoAviones, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addComponent(lblServicio)
+                            .addComponent(lblcantEscritorios))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(76, Short.MAX_VALUE))))
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton1)
+                        .addContainerGap(73, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,10 +137,12 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSiguiente)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSiguiente)
+                    .addComponent(jButton1))
                 .addGap(33, 33, 33)
                 .addComponent(btnTerminar)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,142 +150,196 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
-        
+        //ingresa el dato del texfiel a la lista 
         if (estado) {
-        int aviones = Integer.parseInt(lblnoAviones.getText());
-        System.out.println(aviones);
-        for (int i = 0; i <= aviones -1; i++) {
-            listaAviones.agregarAlFinal(i + 1);
-        }
-        
-        int escritorios = Integer.parseInt(lblcantEscritorios.getText());
-     
-        for (int i = 0; i <= escritorios -1; i++) {
-            listaEscritorios.agregarAlFinal(i);
-        }
-        
-                int mantenimiento = Integer.parseInt(lblServicio.getText());
-        
-        for (int i = 0; i <= mantenimiento -1; i++) {
-            listaMantenimiento.agregarAlFinal(i + 1);
-        }
-        NodoD auxiliar = listaAviones.inicio;
-        while(true){
-            System.out.println("# " + auxiliar.dato);
-            System.out.println("# " + auxiliar.avion.pasajeros);
-            System.out.println("# " + auxiliar.avion.turnosDesabordaje);
-            System.out.println("===================================");
-            auxiliar = auxiliar.siguiente;
-            if (auxiliar == null) break;
-        estado = false;
-        }    
-        }else  {
+            int aviones = Integer.parseInt(lblnoAviones.getText());
+//            System.out.println(aviones);
+            consola+="Aviones: " + aviones +"\n";
+            consola+="==================================="+"\n";
+            for (int i = 0; i <= aviones - 1; i++) {
+                listaAviones.agregarAlFinal(i + 1);
+            }
+            //            //PARA GRAFICAR listaAviones
+            listaAviones.graficarLista(); 
+            //ngresa la cantidad de escritorios a la lista ordenada
+            int escritorios = Integer.parseInt(lblcantEscritorios.getText());
+
+            for (int i = 0; i <= escritorios - 1; i++) {
+                listaEscritorios.agregarAlFinal(i);
+            }
+            //PARA GRAFICAR listaEscritorios
+            listaEscritorios.graficarLista();
+            //ingresa la cantidad de estaciones de servicio a la lista 
+            int mantenimiento = Integer.parseInt(lblServicio.getText());
+            for (int i = 0; i <= mantenimiento - 1; i++) {
+                listaMantenimiento.agregarAlFinal(i + 1);
+            }
+            //PARA GRAFICAR listaMantenimiento
+            listaMantenimiento.graficarLista();        
+            
+            NodoD auxiliar = listaAviones.inicio;
+
+            while (true) {
+                consola+="Avion: # " + auxiliar.dato +"\n";
+                consola+="Tipo: # " + auxiliar.avion.tipo +"\n";
+                consola+="Pasajeros: # " + auxiliar.avion.pasajeros+"\n";
+                consola+="Turno Desabordaje: # " + auxiliar.avion.turnosDesabordaje+"\n";
+                consola+="==================================="+"\n";
+//                System.out.println("# " + auxiliar.dato);
+//                System.out.println("# " + auxiliar.avion.pasajeros);
+//                System.out.println("# " + auxiliar.avion.turnosDesabordaje);
+//                System.out.println("===================================");
+                auxiliar = auxiliar.siguiente;
+                if (auxiliar == null) {
+                    break;
+                }
+                estado = false;
+            }
+            jTextArea1.setText(consola);
+
+            
+        } else {
             NodoD auxiliar = listaAviones.inicio;
             int elim = 1;
-        while(true){
-            auxiliar.avion.turnosDesabordaje =auxiliar.avion.turnosDesabordaje-1; 
-            if (auxiliar.avion.turnosDesabordaje == 0) {
-                // Sacar avion de la lista y pasarlo a la lista de mantenimiento
-                NodoD eliminado = listaAviones.eliminarCualquierLado(elim);
-                boolean eliminar = insertarMantenimiento(eliminado);
-                if(eliminar){
-                    System.out.println("Se ingreso a mantenimiento el avion " + eliminado.dato + ".");
-                }else{
-                    System.out.println("No se pudo ingresar a mantenimiento.");
-                }
-                int numeroPasajeros=auxiliar.avion.pasajeros;
-                for (int i = 0; i < numeroPasajeros; i++) {
-                    Pasajero nuevo = new Pasajero();
-                    colaEspera.insertar(nuevo);
-                    for (int j = 0; j < nuevo.cantidadMaletas; j++) {
-                        listaMaletas.ingresar(j);
+            while (true) {
+                auxiliar.avion.turnosDesabordaje = auxiliar.avion.turnosDesabordaje - 1;
+                if (auxiliar.avion.turnosDesabordaje == 0) {
+                    // Sacar avion de la lista y pasarlo a la lista de mantenimiento
+                    NodoD eliminado = listaAviones.eliminarCualquierLado(elim);
+                    boolean eliminar = insertarMantenimiento(eliminado);
+                    if (eliminar) {
+                        consola+="Se ingreso a mantenimiento el avion " + eliminado.dato + "." +"\n";
+                        //System.out.println("Se ingreso a mantenimiento el avion " + eliminado.dato + ".");
+                    } else {
+                        consola+= "No se pudo ingresar a mantenimiento." +"\n";
+                        //System.out.println("No se pudo ingresar a mantenimiento.");
                     }
+                    int numeroPasajeros = auxiliar.avion.pasajeros;
+                    for (int i = 0; i < numeroPasajeros; i++) {
+                        Pasajero nuevo = new Pasajero();
+                        colaEspera.insertar(nuevo);
+                        for (int j = 0; j < nuevo.cantidadMaletas; j++) {
+                            listaMaletas.ingresar(j);
+                        }
+                    }
+
                 }
-                
-                
+                elim++;
+                auxiliar = auxiliar.siguiente;
+                if (auxiliar == null) {
+                    break;
+                }
+
             }
-            elim ++;
-            auxiliar = auxiliar.siguiente;
-            if (auxiliar == null) break;
-                  
-        }
-         NodoColaEspera  aux_espera = colaEspera.inicio;
+            //refresca 
+            jTextArea1.setText(consola);
+            
+            //VERIFICAR
+            NodoColaEspera aux_espera = colaEspera.inicio;
             if (aux_espera != null) {
                 boolean espacio = true;
-                while (espacio){
+                while (espacio) {
                     NodoListaOrdenada escritorio = listaEscritorios.inicio;
-                    while(true){
-                    NodoColaEspera sacar = colaEspera.quitar();
-                    if(sacar == null){
-                    espacio = false;
-                    break;
+                    while (true) {
+                        NodoColaEspera sacar = colaEspera.quitar();
+                        if (sacar == null) {
+                            espacio = false;
+                            break;
+                        }
+                        if (escritorio.colaLD.tama < 10) {
+                            escritorio.colaLD.insertar(sacar.pasajeros);
+                            consola+="Se ingreso un pasajero a la cola de escritorios"+"\n";
+                            //System.out.println("Se ingreso un pasajero a la cola de escritorios");
+                            continue;
+                        }
+                        escritorio = escritorio.siguiente;
+                        if (escritorio == null) {
+                            espacio = false;
+                            break;
+                        }
                     }
-                    if(escritorio.colaLD.tama<10){
-                        escritorio.colaLD.insertar(sacar.pasajeros);
-                        System.out.println("Se ingreso un pasajero a la cola de escritorios");
-                        continue;
-                    }
-                    escritorio = escritorio.siguiente;
-                    if(escritorio == null) {
-                    espacio = false;
-                    break;
-                    } 
-                    }
-                    }
+                }
                 
                 /* Recorrer los escritorios sacar de la cola y meter a la pila para que los atiendan si la pila esta disponible
                     Manejar los turnos de las personas que estan en la pila 
                     Cuando turnos son = 0 tomar el nodo pasajero, hacer un for de 0 a la cantidad de maletas 
                     Sacar esa cantidad de maletas de la lista circular 
-                */
-                    
+                 */
+            }
+            //HASTA AQUI VERIFICAR
             
         }
-            }
-        
-        NodoColaEspera espera =  colaEspera.inicio;
-        
-        if(espera == null) return;
+            //refresca 
+            jTextArea1.setText(consola);        
+        NodoColaEspera espera = colaEspera.inicio;
+        if (espera == null) {
+            return;
+        }
         int cont = 1;
-        while(true){
-            System.out.println("#" + cont);
-            System.out.println("Documentos " + espera.pasajeros.cantidadDocumentos);
-            System.out.println("maletas" +espera.pasajeros.cantidadMaletas);
-            System.out.println("turnos" + espera.pasajeros.numeroTurnos);
-            System.out.println("===================================");
+        while (true) {
+            consola +="#" + cont +"\n";
+            consola +="Documentos " + espera.pasajeros.cantidadDocumentos + "\n";
+            consola +="maletas" + espera.pasajeros.cantidadMaletas + "\n";
+            consola +="turnos" + espera.pasajeros.numeroTurnos + "\n";
+            consola +="===================================" +"\n";
+            
+//            System.out.println("#" + cont);
+//            System.out.println("Documentos " + espera.pasajeros.cantidadDocumentos);
+//            System.out.println("maletas" + espera.pasajeros.cantidadMaletas);
+//            System.out.println("turnos" + espera.pasajeros.numeroTurnos);
+//            System.out.println("===================================");
             espera = espera.siguiente;
             cont++;
-            if (espera == null) break;
+            if (espera == null) {
+                break;
+            }
         }
-        
-        
-        
-        
+                    //refresca 
+            jTextArea1.setText(consola);
+
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    public boolean insertarMantenimiento(NodoD avion){
-    
+    private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTerminarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    listaAviones.abrir_grafica();
+    listaMantenimiento.abrir_grafica();
+    listaEscritorios.abrir_grafica();    
+
+//            //PARA GRAFICAR listaMantenimiento
+//            listaMantenimiento.graficarLista();
+////            //PARA GRAFICAR listaAviones
+//            listaAviones.graficarLista(); 
+//            //PARA GRAFICAR listaEscritorios
+//            listaEscritorios.graficarLista();
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public boolean insertarMantenimiento(NodoD avion) {
+
         NodoS auxiliar = listaMantenimiento.inicio;
-        while(true){
-            if(auxiliar.colaLS.estado == false){
-            auxiliar.colaLS.avion = avion.avion;
-            auxiliar.colaLS.estado = true;
-            return true;
+        while (true) {
+            if (auxiliar.colaLS.estado == false) {
+                auxiliar.colaLS.avion = avion.avion;
+                auxiliar.colaLS.estado = true;
+                return true;
             }
-        auxiliar = auxiliar.siguiente;
-        if(auxiliar == null) break;
+            auxiliar = auxiliar.siguiente;
+            if (auxiliar == null) {
+                break;
+            }
         }
-        
+
         return false;
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -288,9 +362,6 @@ public class Pantalla extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -299,31 +370,31 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
     }
-    
+
     Avion avion = new Avion();
-    public void rndTipo(){
+
+    public void rndTipo() {
         Random rnd = new Random();
         int valor = rnd.nextInt(3);
-        switch (valor){
-            case 1:    
+        switch (valor) {
+            case 1:
                 avion.setTipo("pequeño");
-               
-            break;
+
+                break;
             case 2:
                 avion.setTipo("mediano");
-            break;
+                break;
             case 3:
                 avion.setTipo("grande");
-            break;        
+                break;
         }
-            
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnTerminar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

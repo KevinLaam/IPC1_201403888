@@ -1,0 +1,8 @@
+digraph G {
+rankdir=LR;
+node [shape=record];
+"Avión 1":ptr->"Avión 2"
+"Avión 2":ptr->"Avión 1"
+node1[label = "{<val>Llegadas de Aviones}"] [style=filled];
+node1[label = "{<val>Llegadas de Aviones}"] [style=filled];
+}

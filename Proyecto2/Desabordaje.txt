@@ -1,0 +1,13 @@
+digraph G {
+rankdir=LR;
+node [shape=record];
+node0[label = "{<val>Avión[1]|<ptr> siguiente}"];
+node1[label = "{<val>Avión[2]|<ptr> siguiente}"];
+node2[label = "{<val>Avión[3]|<ptr> siguiente}"];
+node3[label = "{<val>Avión[4]|<ptr> siguiente}"];
+node4[label = "{<val>Avión[5]|<ptr> siguiente}"];
+"node0":ptr->"node1"
+"node1":ptr->"node2"
+"node2":ptr->"node3"
+"node3":ptr->"node4"
+}

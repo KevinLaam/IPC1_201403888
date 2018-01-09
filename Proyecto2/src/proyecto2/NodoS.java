@@ -22,6 +22,9 @@ public class NodoS {
             this.dato = d;
             this.siguiente = s;
         }
+        public NodoS getSiguiente(){
+            return siguiente;
+        }
         
     
 }

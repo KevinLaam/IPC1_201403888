@@ -5,6 +5,12 @@
  */
 package proyecto2;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Kevin Lam
@@ -117,4 +123,33 @@ public class ListaD {
         }
         return d;
     }
+    //PARA GRAFICAR
+    String nombre;
+    GraficaD grafica;
+    File file;    
+    public void graficarLista(){
+
+        
+        nombre = "Llegada de aviones";
+        grafica = new GraficaD();
+        
+        try 
+        {
+            grafica.graficar(inicio, nombre);
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ListaS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }  
+    public void abrir_grafica(){
+        try 
+        {
+            file = new File(nombre + ".jpg");
+            Desktop.getDesktop().open(file);
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ListaS.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
 }

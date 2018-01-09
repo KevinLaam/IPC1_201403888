@@ -1,0 +1,14 @@
+digraph G {
+rankdir=LR;
+node [shape=record];
+"Avión 1":ptr->"Avión 2"
+"Avión 2":ptr->"Avión 1"
+"Avión 2":ptr->"Avión 3"
+"Avión 3":ptr->"Avión 2"
+"Avión 3":ptr->"Avión 4"
+"Avión 4":ptr->"Avión 3"
+node3[label = "{<val>Llegadas de Aviones}"] [style=filled];
+node3[label = "{<val>Llegadas de Aviones}"] [style=filled];
+node3[label = "{<val>Llegadas de Aviones}"] [style=filled];
+node3[label = "{<val>Llegadas de Aviones}"] [style=filled];
+}

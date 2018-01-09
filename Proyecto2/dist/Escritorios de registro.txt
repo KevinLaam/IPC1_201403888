@@ -1,0 +1,17 @@
+digraph G {
+rankdir=LR;
+node [shape=record];
+"Escritorio a":ptr->"Escritorio b"
+"Escritorio b":ptr->"Escritorio a"
+"Escritorio b":ptr->"Escritorio c"
+"Escritorio c":ptr->"Escritorio b"
+"Escritorio c":ptr->"Escritorio d"
+"Escritorio d":ptr->"Escritorio c"
+"Escritorio d":ptr->"Escritorio e"
+"Escritorio e":ptr->"Escritorio d"
+node4[label = "{<val>Escritorio de registro}"] [style=filled];
+node4[label = "{<val>Escritorio de registro}"] [style=filled];
+node4[label = "{<val>Escritorio de registro}"] [style=filled];
+node4[label = "{<val>Escritorio de registro}"] [style=filled];
+node4[label = "{<val>Escritorio de registro}"] [style=filled];
+}

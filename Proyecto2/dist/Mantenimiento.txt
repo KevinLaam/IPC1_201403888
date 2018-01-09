@@ -1,0 +1,21 @@
+digraph G {
+rankdir=LR;
+node [shape=record];
+node0[label = "{<val>Estación[1]|<ptr> siguiente}"];
+node1[label = "{<val>Estación[2]|<ptr> siguiente}"];
+node2[label = "{<val>Estación[3]|<ptr> siguiente}"];
+node3[label = "{<val>Estación[4]|<ptr> siguiente}"];
+node4[label = "{<val>Estación[5]|<ptr> siguiente}"];
+node5[label = "{<val>Estación[6]|<ptr> siguiente}"];
+node6[label = "{<val>Mantenimiento}"] [style=filled];
+node6[label = "{<val>Mantenimiento}"] [style=filled];
+node6[label = "{<val>Mantenimiento}"] [style=filled];
+node6[label = "{<val>Mantenimiento}"] [style=filled];
+node6[label = "{<val>Mantenimiento}"] [style=filled];
+node6[label = "{<val>Mantenimiento}"] [style=filled];
+"node0":ptr->"node1"
+"node1":ptr->"node2"
+"node2":ptr->"node3"
+"node3":ptr->"node4"
+"node4":ptr->"node5"
+}
